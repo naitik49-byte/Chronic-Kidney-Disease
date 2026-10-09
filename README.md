@@ -31,7 +31,7 @@ Source: add the link where you downloaded the dataset. It appears to be the publ
 | Check | What I found | What I did |
 |---|---|---|
 | Missing values | About 1,000 empty cells (10% of the table). 242 of 400 rows have at least one gap. | Filled number columns with the median and text columns with the most common value. Dropping rows would leave only 158 patients. |
-| Duplicates | None | Nothing to remove |
+| Duplicates | None. | Nothing to remove. |
 | Data types | `pcv`, `wc` and `rc` are numbers stored as text, and a few cells hold `?`. Text labels have hidden tabs and spaces, so `ckd` and `ckd\t` looked like two groups. | Converted the three columns to numbers and stripped spaces and tabs from all text columns. |
 | Outliers | The IQR rule flags 51 values in `sc`, 38 in `bu`, 36 in `bp` and 34 in `bgr`. | Kept them, because very high creatinine and urea are real in kidney failure. Three impossible values (potassium 39 and 47, sodium 4.5) were set to empty and filled with the median. |
 
