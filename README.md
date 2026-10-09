@@ -39,34 +39,15 @@ After cleaning, the table has 400 rows and 25 columns (the `id` column is droppe
 
 ## Charts
 
-| # | Question | File |
+| # | Question | Observations |
 |---|---|---|
-| 1 | How many patients have CKD? | `1_class_distribution.png` |
-| 2 | How old are the patients? | `2_age_distribution.png` |
-| 3 | Do key test results differ between the two groups? | `3_boxplots.png` |
-| 4 | Which features are linked to CKD? | `4_correlation_heatmap.png` |
-| 5 | Do health conditions matter? | `5_risk_factors.png` |
-| 6 | Can two test results separate the groups? | `6_hemo_vs_creatinine.png` |
-| 7 | Does CKD become more common with age? | `7_ckd_by_age.png` |
-
-Two more charts support the cleaning step: `A_missing_values.png` and `B_outliers.png`. All charts are in `output/figures/`.
-
-
-
-![Key blood and urine tests](output/figures/3_boxplots.png)
-
-
-
-
-
-![Correlation heatmap](output/figures/4_correlation_heatmap.png)
-
-
-
-
-
-![Hemoglobin vs serum creatinine](output/figures/6_hemo_vs_creatinine.png)
-
+| 1 | How many patients have CKD? | 250 of 400 (62.5%). |
+| 2 | How old are the patients? | CKD patients are older, with a middle age of 59 against 46. |
+| 3 | Do key test results differ between the two groups? | Yes. CKD patients have lower hemoglobin (11.3 vs 15.0 g/dL), lower packed cell volume (36% vs 45.5%) and higher serum creatinine (2.2 vs 0.9 mg/dL). |
+| 4 | Which features are linked to CKD? | Hemoglobin (-0.73), packed cell volume (-0.67), specific gravity (-0.66) and red cell count (-0.57) have the strongest links, and albumin has the strongest positive link (+0.53). |
+| 5 | Do health conditions matter? | Yes. Every patient with hypertension, diabetes, coronary artery disease, poor appetite, pedal edema or anemia has CKD. |
+| 6 | Can two test results separate the groups? | Yes, hemoglobin and serum creatinine together separate them with very little overlap. |
+| 7 | Does CKD become more common with age? | Yes: 31% at ages 21 to 40, 62% at 41 to 60, and 78% above 60. |
 
 
 ## Key findings
@@ -78,49 +59,6 @@ Two more charts support the cleaning step: `A_missing_values.png` and `B_outlier
 - The CKD share rises with age: 31% for ages 21 to 40, 62% for 41 to 60 and 78% above 60.
 - Hemoglobin and serum creatinine together separate the two groups clearly, so a simple model should be able to predict CKD. That is a good next step.
 
-## How to run
-
-### Option 1: Google Colab
-
-1. Go to [colab.research.google.com](https://colab.research.google.com) and choose **File > Upload notebook**.
-2. Select `ckd_analysis_colab.ipynb`.
-3. Run the cells one by one with **Shift + Enter**. In Step 2, upload `kidney_disease.csv` when asked.
-
-### Option 2: On your computer
-
-```bash
-pip install pandas numpy matplotlib seaborn
-python ckd_analysis.py
-```
-
-Keep `kidney_disease.csv` in the same folder as the script. It creates an `output` folder with the clean dataset (`kidney_disease_clean.csv`), all charts and `insights_report.txt`.
-
-## Repository structure
-
-```
-ckd-data-analysis/
-  README.md
-  kidney_disease.csv              original data
-  ckd_analysis.py                 cleaning, charts and report in one script
-  ckd_analysis_colab.ipynb        same work, step by step for Google Colab
-  output/
-    kidney_disease_clean.csv      cleaned data
-    insights_report.txt           short insights report
-    figures/                      all charts
-```
-
-## Tools used
-
-- Python 3
-- pandas and NumPy for cleaning
-- Matplotlib and Seaborn for charts
-- Google Colab / Jupyter Notebook
-- Git and GitHub
-
 ## Limits
 
 The dataset has only 400 patients and looks like a selected sample, so these numbers do not show how common the conditions are in general. Filling gaps with the median makes correlations a little weaker than they would be with complete data. This is a study project and not medical advice.
-
-## Author
-
-Naitik, Indus Institute of Engineering & Technology
